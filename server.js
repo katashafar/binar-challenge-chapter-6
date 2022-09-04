@@ -18,11 +18,66 @@ app.get("/", (req, res) => {
 
 app.get("/dashboard", async (req, res) => {
   const users = await models.UserGame.findAll();
-  res.render("dashboard", {users: users});
+  res.render("dashboard", { users: users });
 });
 
 app.get("/create", (req, res) => {
   res.render("create");
+});
+
+app.post("/save", async (req, res) => {
+  const { username, passsword } = req.body;
+  try {
+    await models.UserGame.create({ username: username, passsword: passsword });
+    res.redirect("/dashboard");
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+});
+
+app.get("/addbiodata/:id", async (req, res) => {
+  const { id } = req.params;
+  const user = await models.UserGame.findOne({
+    where: { id: id },
+  });
+  res.render("addbiodata", { user });
+});
+
+app.post("/addbiodata/:id", async (req, res) => {
+  const { id } = req.params;
+  const { UserGameId, DOB, POB, city, gender } = req.body;
+  await models.UserBiodata.create({
+    UserGameId: UserGameId,
+    DOB: DOB,
+    POB: POB,
+    city: city,
+    gender: gender,
+  });
+  res.redirect("/dashboard");
+});
+
+app.get("/edit/:id", async (req, res) => {
+  const { id} = req.params;
+  const user = await models.UserGame.findOne({
+    where: { id: id },
+  });
+  const biodata = await models.UserBiodata.findOne({
+    where: { UserGameId: id },
+  });
+  res.render("edit", { user, biodata });
+});
+
+app.post("/save-edit/:id", async (req, res) => {
+  const {id} = req.params;
+  const user = await models.UserGame.findOne({
+    where: { id: id },
+  });
+  const biodata = await models.UserBiodata.findOne({
+    where: { UserGameId: id },
+  });
+  await user.update(req.body);
+  await biodata.update(req.body);
+  res.redirect("/dashboard");
 });
 
 app.get("/details", (req, res) => {

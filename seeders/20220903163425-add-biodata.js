@@ -6,7 +6,7 @@ module.exports = {
       "UserBiodata",
       [
         {
-          UserGameID: 3,
+          UserGameId: 1,
           DOB: new Date(),
           POB: "Jakarta",
           city: "Bogor",

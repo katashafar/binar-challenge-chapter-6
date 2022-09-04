@@ -10,31 +10,31 @@
 
 <body>
     <h1 class="">Form Add User</h1>
-    <form action="/save-edit/<%=user.id%>" method="POST">
+    <form action="/addbiodata/<%=user.id%>" method="POST">
         <div>
             <label>Username</label>
-            <input class="border-2" type="text" name="username" value="<%=user.username%>"/>
+            <input class="border-2" type="text" name="username" value="<%=user.username%>" disabled />
             <input class="border-2" type="hidden" name="UserGameId" value="<%=user.id%>" disabled />
         </div>
         <div>
             <label>Password</label>
-            <input class="border-2" type="text" name="password" value="<%=user.password%>" />
+            <input class="border-2" type="text" name="password" value="<%=user.password%>" disabled />
         </div>
         <div>
             <label>Date of Birth</label>
-            <input class="border-2" type="date" name="DOB" value="<%=biodata.DOB%>"/>
+            <input class="border-2" type="date" name="DOB" />
         </div>
         <div>
             <label>Place of Birth</label>
-            <input class="border-2" type="text" name="POB" value="<%=biodata.POB%>"/>
+            <input class="border-2" type="text" name="POB" />
         </div>
         <div>
             <label>City</label>
-            <input class="border-2" type="text" name="city" value="<%=biodata.city%>"/>
+            <input class="border-2" type="text" name="city" />
         </div>
         <div>
             <label>Gender</label>
-            <select name="Gender" value="<%=biodata.gender%>">
+            <select name="Gender">
                 <option>choose</option>
                 <option>Male</option>
                 <option>Female</option>
