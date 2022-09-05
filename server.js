@@ -84,6 +84,17 @@ app.get("/details", (req, res) => {
   res.render("details");
 });
 
+app.get('/delete/:id', async (req, res) => {
+  const { id } = req.params;
+  await models.UserGame.destroy({
+    where: {
+      id: id
+    }
+  });
+
+  res.redirect('/dashboard');
+});
+
 app.post("/Login", (req, res) => {
   const { username, password } = req.body;
   if (username == users[0].username && password == users[0].password) {
