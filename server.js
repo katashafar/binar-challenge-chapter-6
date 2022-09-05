@@ -6,8 +6,6 @@ const app = express();
 const users = require("./db/users.json");
 const models = require("./models");
 
-// console.log(users);
-
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
