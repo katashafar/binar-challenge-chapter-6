@@ -78,8 +78,18 @@ app.post("/save-edit/:id", async (req, res) => {
   res.redirect("/dashboard");
 });
 
-app.get("/details", (req, res) => {
-  res.render("details");
+app.get("/details/:id", async (req, res) => {
+  const {id} = req.params;
+  const user = await models.UserGame.findOne({
+    where: {id: id},
+  }) 
+  const histories = await models.UserHistory.findAll({
+    where: {UserGameId: id},
+  })
+  const biodata = await models.UserBiodata.findOne({
+    where: {UserGameId: id},
+  })
+  res.render("details", { user,histories,biodata});
 });
 
 app.get('/delete/:id', async (req, res) => {

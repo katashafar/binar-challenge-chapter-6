@@ -14,23 +14,23 @@
     <table class="table-auto">
         <tr>
             <th>ID</th>
-            <td>1</td>
+            <td><%= user.id %> </td>
         </tr>
         <tr>
             <th>Username</t>
-            <td>Maria Anders</td>
+            <td><%= user.username %> </td>
         </tr>
         <tr>
             <th>Date of Birth</th>
-            <td>1/1/2022</td>
+            <td><%= biodata.DOB %> </td>
         </tr>
         <tr>
             <th>Place of Birth</th>
-            <td>Jakarta</td>
+            <td><%= biodata.POB %> </td>
         </tr>
         <tr>
             <th>City</th>
-            <td>Bogor</td>
+            <td><%= biodata.city %> </td>
         </tr>
     </table>
     <table class="table-auto">
@@ -39,21 +39,13 @@
             <th>Time</th>
             <th>Score</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>12314234</td>
-            <td>win</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>535123532</td>
-            <td>Draw</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>535123532</td>
-            <td>Win</td>
-        </tr>
+        <% histories.forEach(history => { %>
+            <tr>
+                <td><%= history.id %> </td>
+                <td><%= history.time %> </td>
+                <td><%= history.score %> </td>
+            </tr>
+        <% }) %>
     </table>
 </body>
 
